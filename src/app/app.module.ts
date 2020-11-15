@@ -16,7 +16,8 @@ import { DetailsComponent } from './components/details/details.component';
 const oktaConfig = {
   issuer: 'https://dev-202011.oktapreview.com/oauth2/default',
   clientId: '0oangm1j2mdetoW8z0h7',
-  redirectUri: 'http://localhost:4200/implicit/callback'
+  redirectUri: 'http://localhost:4200/implicit/callback',
+  scopes: ['openid', 'profile', 'email']
 }
 
 const appRoutes: Routes = [

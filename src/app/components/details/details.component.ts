@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OktaAuthService } from '@okta/okta-angular';
 
 @Component({
   selector: 'app-details',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
+  userName: string;
+  emailId: string;
 
-  constructor() { }
+  constructor(public oktaAuth: OktaAuthService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const userClaims = await this.oktaAuth.getUser();
+    this.userName = userClaims.name;
+    this.emailId= userClaims.email;
+    console.log('user-claims', userClaims);
+    console.log('access-token', this.oktaAuth.getAccessToken());
   }
 
 }
